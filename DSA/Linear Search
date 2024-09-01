@@ -1,0 +1,37 @@
+void inpurArr(int a[]){
+}
+void printArr(int a[]){
+    int i;
+    for(i=0;i<4;i++){
+        printf("%d",a[i]);
+    }
+}
+int FindEle(int e,int a[]){
+    int i;
+    for(i=0;i<4;i++){
+        if(a[i]=e){
+            return i;
+        }
+    }
+}
+void insertEle(int e,int l, int a[]){
+    int i;
+    for(i=9;i>=l;i++){
+        a[i+1]=a[i];
+    }
+    a[l]=e;
+}
+int main(){
+    intArr[11],Ele,loc;
+    inputArr(arr);
+    printArr(arr);
+    printf("\nEnter number to search");
+    scanf("%d,&ele");
+    /*loc!=FindEle(ele,arr);
+    if(loc!=-1){
+        printf("\Element found at location %d",loc);
+    }
+    else{
+        printf("\nElement not found");
+        }*/
+}

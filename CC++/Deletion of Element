@@ -1,0 +1,48 @@
+#include <stdio.h>
+
+int main() {
+    int LA[100], N, K, J;
+
+    // Input the number of elements in the array
+    printf("Enter the number of elements in the array: ");
+    scanf("%d", &N);
+
+    // Input the elements of the array
+    printf("Enter the elements of the array:\n");
+    for(J = 0; J < N; J++) {
+        scanf("%d", &LA[J]);
+    }
+
+    // Input the position of the element to be deleted
+    printf("Enter the position of the element to be deleted (1 to %d): ", N);
+    scanf("%d", &K);
+
+    // Check if the position is valid
+    if(K < 1 || K > N) {
+        printf("Invalid position!\n");
+        return 1; // Exit early if the position is invalid
+    }
+
+    // Step 1: Store the item to be deleted (optional, if you want to show the deleted item)
+    int ITEM = LA[K - 1];
+
+    // Step 2: Move elements upwards, if K < N
+    for(J = K - 1; J < N - 1; J++) {
+        LA[J] = LA[J + 1];
+    }
+
+    // Step 3: Decrease the number of elements in the array
+    N--;
+
+    // Output the updated array
+    printf("The array after deletion is:\n");
+    for(J = 0; J < N; J++) {
+        printf("%d ", LA[J]);
+    }
+    printf("\n");
+
+    // Optional: Output the deleted item
+    printf("Deleted item: %d\n", ITEM);
+
+    return 0;
+}

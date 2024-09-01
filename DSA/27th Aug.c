@@ -1,4 +1,4 @@
-//27 August
+//
 #include<stdio.h>
 #include<stdlib.h>
 

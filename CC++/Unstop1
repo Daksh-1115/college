@@ -1,0 +1,58 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+#define MAX_SIZE 10001  // Define a constant for the maximum possible shoe ID
+
+// Function to compare two integers, used by qsort
+int compareIntegers(const void *a, const void *b) {
+    int int_a = *(int*)a;
+    int int_b = *(int*)b;
+    
+    return (int_a > int_b) - (int_a < int_b);
+}
+
+int main() {
+    int leftCount, rightCount;
+    int leftShoes[MAX_SIZE] = {0}, rightShoes[MAX_SIZE] = {0};  // Arrays to store frequencies
+    int i, totalMatchedPairs = 0;
+
+    // Reading the number of left and right shoes
+    scanf("%d %d", &leftCount, &rightCount);
+    
+    // Reading the IDs of left shoes and updating their counts
+    for (i = 0; i < leftCount; i++) {
+        int shoeID;
+        scanf("%d", &shoeID);
+        leftShoes[shoeID]++;
+    }
+    
+    // Reading the IDs of right shoes and updating their counts
+    for (i = 0; i < rightCount; i++) {
+        int shoeID;
+        scanf("%d", &shoeID);
+        rightShoes[shoeID]++;
+    }
+    
+    // Array to keep track of matched IDs
+    int matchedIDs[MAX_SIZE], matchedIndex = 0;
+    
+    // Finding matching pairs by checking frequency counts
+    for (i = 0; i < MAX_SIZE; i++) {
+        if (leftShoes[i] > 0 && rightShoes[i] > 0) {
+            int pairCount = (leftShoes[i] < rightShoes[i]) ? leftShoes[i] : rightShoes[i];
+            totalMatchedPairs += pairCount;
+            matchedIDs[matchedIndex++] = i;
+        }
+    }
+    printf("%d\n", totalMatchedPairs);
+    qsort(matchedIDs, matchedIndex, sizeof(int), compareIntegers);
+    for (i = 0; i < matchedIndex; i++) {
+        int count = (leftShoes[matchedIDs[i]] < rightShoes[matchedIDs[i]]) ? leftShoes[matchedIDs[i]] : rightShoes[matchedIDs[i]];
+        for (int j = 0; j < count; j++) {
+            printf("%d ", matchedIDs[i]);
+        }
+    }
+    printf("\n");
+
+    return 0;
+}

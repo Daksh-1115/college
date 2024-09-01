@@ -1,0 +1,54 @@
+#include <stdio.h>
+
+void inputArr(int a[]) {
+    int i;
+    printf("Enter 4 elements for the array:\n");
+    for(i = 0; i < 4; i++) {
+        scanf("%d", &a[i]);
+    }
+}
+
+void printArr(int a[]) {
+    int i;
+    for(i = 0; i < 4; i++) {
+        printf("%d ", a[i]);
+    }
+    printf("\n");
+}
+
+int FindEle(int e, int a[]) {
+    int i;
+    for(i = 0; i < 4; i++) {
+        if(a[i] == e) {  // Corrected equality check (== instead of =)
+            return i;
+        }
+    }
+    return -1;  // Return -1 if the element is not found
+}
+
+void insertEle(int e, int l, int a[]) {
+    int i;
+    for(i = 9; i >= l; i--) {
+        a[i+1] = a[i];
+    }
+    a[l] = e;
+}
+
+int main() {
+    int arr[11], ele, loc;
+
+    inputArr(arr);
+    printArr(arr);
+
+    printf("\nEnter number to search: ");
+    scanf("%d", &ele);
+
+    loc = FindEle(ele, arr);
+    if(loc != -1) {
+        printf("\nElement found at location %d", loc);
+    } else {
+        printf("\nElement not found");
+    }
+
+    return 0;
+}
